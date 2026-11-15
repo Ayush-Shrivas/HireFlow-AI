@@ -28,3 +28,16 @@ class AuthenticationTests(TestCase):
 
     def test_me_requires_authentication(self):
         self.assertEqual(self.client.get("/api/v1/auth/me/").status_code, 401)
+
+    def test_duplicate_email_is_rejected(self):
+        User.objects.create_user(email="duplicate@example.com", password="StrongPass123!")
+        response = self.client.post("/api/v1/auth/register/", {"email": "duplicate@example.com", "password": "StrongPass123!", "password_confirmation": "StrongPass123!", "role": "CANDIDATE"}, format="json")
+        self.assertEqual(response.status_code, 400)
+
+    def test_password_confirmation_is_required_to_match(self):
+        response = self.client.post("/api/v1/auth/register/", {"email": "mismatch@example.com", "password": "StrongPass123!", "password_confirmation": "DifferentPass123!", "role": "CANDIDATE"}, format="json")
+        self.assertEqual(response.status_code, 400)
+
+    def test_google_sign_in_requires_configuration(self):
+        response = self.client.get("/api/v1/auth/google/login/")
+        self.assertEqual(response.status_code, 503)

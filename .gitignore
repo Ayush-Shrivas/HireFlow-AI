@@ -3,11 +3,14 @@
 !.env.example
 __pycache__/
 *.py[cod]
+*.tsbuildinfo
 .pytest_cache/
 .venv/
 node_modules/
 dist/
 build/
+frontend/playwright-report/
+frontend/test-results/
 media/
 db.sqlite3
 *.log
