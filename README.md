@@ -28,9 +28,11 @@ Managed cloud deployment remains outside this local project scope.
 
 ## Product preview
 
-The current UI includes recruiter opportunity creation and candidate pipeline workflows.
+The current UI includes separate experiences for authentication, candidates, and recruiters.
 
-![HireFlow AI opportunity creation preview](docs/assets/hireflow-opportunity.png)
+| Login | Candidate portal | Recruiter portal |
+|---|---|---|
+| ![HireFlow AI login page](docs/assets/hireflow-login.png) | ![HireFlow AI candidate portal](docs/assets/hireflow-candidate-portal.png) | ![HireFlow AI recruiter portal](docs/assets/hireflow-recruiter-portal.png) |
 
 ## Quick start
 
