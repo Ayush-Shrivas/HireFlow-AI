@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from rest_framework.test import APIClient
 
 from apps.accounts.models import User
@@ -41,3 +41,13 @@ class AuthenticationTests(TestCase):
     def test_google_sign_in_requires_configuration(self):
         response = self.client.get("/api/v1/auth/google/login/")
         self.assertEqual(response.status_code, 503)
+
+    @override_settings(DEBUG=True)
+    def test_password_reset_request_and_confirmation(self):
+        user = User.objects.create_user(email="reset@example.com", password="OldPass123!", role=User.Role.CANDIDATE)
+        request = self.client.post("/api/v1/auth/password-reset/", {"email": user.email}, format="json")
+        self.assertEqual(request.status_code, 200)
+        self.assertIn("uid", request.data)
+        confirm = self.client.post("/api/v1/auth/password-reset/confirm/", {"uid": request.data["uid"], "token": request.data["token"], "password": "NewPass123!", "password_confirmation": "NewPass123!"}, format="json")
+        self.assertEqual(confirm.status_code, 200)
+        self.assertEqual(self.client.post("/api/v1/auth/login/", {"email": user.email, "password": "NewPass123!"}, format="json").status_code, 200)

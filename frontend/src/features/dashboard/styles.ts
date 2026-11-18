@@ -78,8 +78,45 @@ button, input, select, textarea { font: inherit; }
 .application-row small { color:#718097; font-size:10px; }
 .pipeline-panel>.applications-panel { margin:28px -32px -32px; border:0; border-top:1px solid #08b9ed22; border-radius:0; }
 .health-score { margin:20px 0 8px; color:#54e6a5; font-size:30px; }
+.portal-page { padding-top:58px; }
+.portal-title { max-width:900px; margin:10px 0 38px; color:#f1f4fb; font-size:clamp(44px,6vw,82px); font-weight:500; letter-spacing:-.07em; line-height:.95; }
+.portal-two-col { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; }
+.portal-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:24px; }
+.portal-form label { display:grid; min-width:0; gap:8px; color:#b8c5d2; font-size:11px; font-weight:700; letter-spacing:.04em; }
+.portal-form input,.portal-form select,.portal-form textarea { width:100%; min-width:0; border:1px solid #26303b; border-radius:7px; outline:none; padding:13px 14px; color:#f5f8fb; background:#080b0f; }
+.portal-form input:focus,.portal-form select:focus,.portal-form textarea:focus { border-color:#08b9ed; box-shadow:0 0 0 3px #08b9ed1f; }
+.portal-wide { grid-column:1 / -1; }
+.upload-button { position:relative; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
+.upload-button input { position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; }
+.resource-list { display:grid; gap:10px; margin-top:20px; }
+.resource-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px; border:1px solid #08b9ed24; border-radius:10px; background:#ffffff08; }
+.resource-row strong { color:#f2f6fb; }
+.resource-row p { margin:6px 0 0; color:#8996ae; font-size:12px; }
+.resource-row small { display:block; margin-top:6px; color:#718097; }
+.messages-layout { display:grid; grid-template-columns:320px 1fr; gap:18px; }
+.conversation-list { align-self:start; padding:22px; }
+.conversation-item { display:grid; width:100%; gap:7px; border:1px solid transparent; border-radius:9px; padding:14px; text-align:left; color:#dfe8f0; background:#ffffff08; }
+.conversation-item + .conversation-item { margin-top:8px; }
+.conversation-item.selected { border-color:#08b9ed66; background:#007ba722; }
+.conversation-item small { overflow:hidden; color:#8d9bae; text-overflow:ellipsis; white-space:nowrap; }
+.new-conversation { display:grid; gap:10px; margin-top:20px; }
+.new-conversation input,.message-compose textarea { width:100%; border:1px solid #26303b; border-radius:7px; padding:12px; outline:none; color:#fff; background:#080b0f; }
+.conversation-view { display:flex; min-height:530px; flex-direction:column; }
+.message-stream { display:grid; flex:1; align-content:start; gap:10px; min-height:260px; margin:0 -8px 20px; padding:8px; }
+.message-bubble { width:fit-content; max-width:75%; border:1px solid #08b9ed24; border-radius:12px 12px 12px 3px; padding:12px 15px; background:#ffffff08; }
+.message-bubble small { color:#08b9ed; font-size:10px; }
+.message-bubble p { margin:6px 0 0; color:#dce6ee; line-height:1.5; }
+.message-compose { display:flex; align-items:end; gap:12px; }
+.message-compose textarea { flex:1; resize:vertical; }
+.resource-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.resource-card { display:flex; min-height:280px; flex-direction:column; align-items:flex-start; }
+.resource-card p { min-height:72px; color:#9caabd; line-height:1.7; }
+.resource-card .primary-button { margin-top:auto; text-decoration:none; }
+.resource-icon { color:#ff5c96; font-size:30px; }
+.standalone-auth { max-width:600px; width:100%; margin:auto; }
 @media(max-width:1050px){.job-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.main-nav{display:none}.welcome-row{align-items:flex-start;flex-direction:column}.stat-grid{grid-template-columns:repeat(2,1fr)}.portal-grid{grid-template-columns:1fr}.post-job-form{grid-template-columns:repeat(2,1fr)}.post-job-description{grid-column:span 2}.post-job-submit{min-height:58px}.section-heading{align-items:flex-start;flex-direction:column}.search-wrap{width:100%;flex-basis:auto}.job-search{max-width:none}}
+@media(max-width:900px){.portal-two-col,.messages-layout,.resource-grid{grid-template-columns:1fr}.portal-title{font-size:56px}.conversation-list{order:2}}
 @media(max-width:600px){.account-email{display:none}.topbar{padding:20px 24px}.dashboard{padding:55px 24px 80px}.dashboard h1{font-size:55px}.job-grid{grid-template-columns:1fr}.post-job-form{grid-template-columns:1fr}.post-job-description{grid-column:auto}.application-row{grid-template-columns:34px 1fr}.application-row .status-pill,.application-row select{grid-column:2}.form-row{grid-template-columns:1fr}}
 `;
 const node = document.createElement("style"); node.textContent = css; document.head.appendChild(node);
