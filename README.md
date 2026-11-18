@@ -26,6 +26,12 @@ Managed cloud deployment remains outside this local project scope.
 - `infrastructure/`: Docker, Nginx, and operational scripts
 - `docs/`: architecture, setup, daily records, tests, and walkthroughs
 
+## Product preview
+
+The current UI includes recruiter opportunity creation and candidate pipeline workflows.
+
+![HireFlow AI opportunity creation preview](docs/assets/hireflow-opportunity.png)
+
 ## Quick start
 
 Docker is not required for Day 1. Start Django, FastAPI, and React separately; development settings use SQLite when PostgreSQL is not configured. Detailed commands are in [`docs/Walk Through/`](docs/Walk%20Through/) and [`docs/development-setup.md`](docs/development-setup.md).
@@ -36,7 +42,29 @@ Backend: `python manage.py check` and `python manage.py test apps.accounts.tests
 
 AI service: `python -m pytest -q` from `ai-service`.
 
-Frontend: `npm test`, `npm run build`, and `npm run test:e2e` from `frontend` after installing Chromium with `npx playwright install chromium`.
+Frontend: run `npm test`, `npm run build`, and `npm run test:e2e` from `frontend` after installing Chromium with `npx playwright install chromium`.
+
+The browser suite covers authentication, candidate profile, resources, messages, interviews, and password-reset navigation. It can be run with:
+
+```powershell
+cd frontend
+npm install
+npx playwright install chromium
+npm test -- --run
+npm run build
+npm run test:e2e
+```
+
+Docker Compose configuration can be checked locally with:
+
+```powershell
+docker compose config
+docker compose up --build -d
+docker compose ps
+docker compose down
+```
+
+Docker is optional for local development and is not required to run the frontend, Django backend, or AI service separately.
 
 ## Documentation
 
